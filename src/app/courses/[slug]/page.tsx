@@ -109,11 +109,11 @@ export function generateStaticParams() {
   return courseDetails.map((c) => ({ slug: c.slug }))
 }
 
-interface Params {
+interface PageProps {
   params: { slug: string }
 }
 
-export default function CoursePage({ params }: Params) {
+export default function CoursePage({ params }: PageProps) {
   const course = courseDetails.find((c) => c.slug === params.slug)
   if (!course) return notFound()
 
