@@ -82,7 +82,7 @@ const courseDetails: CourseDetail[] = [
       'Compliance frameworks (ISO 27001, GDPR basics)',
       'Writing professional pentest reports',
     ],
-    duration: '3 Months(Only on Saturday & Sunday)',
+    duration: '3 Months (Only on Saturday & Sunday)',
     mode: 'Offline labs',
     prerequisites: 'Fundamentals of networking & programming',
   },
