@@ -12,7 +12,7 @@ export default function Contact() {
 
         {/* Inquiry Form */}
         <form
-          action="https://formspree.io/f/YOUR_FORMSPREE_ID"
+          action="https://formspree.io/f/mgvkggwb"
           method="POST"
           className="space-y-6 bg-slate-800 p-6 rounded-lg shadow-lg"
         >

@@ -1,4 +1,3 @@
-// File: src/app/courses/[slug]/page.tsx
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 
@@ -105,15 +104,13 @@ const courseDetails: CourseDetail[] = [
   },
 ]
 
+// Dynamic static params for Next.js App Router
 export function generateStaticParams() {
   return courseDetails.map((c) => ({ slug: c.slug }))
 }
 
-interface PageProps {
-  params: { slug: string }
-}
-
-export default function CoursePage({ params }: PageProps) {
+// Page Component
+export default function CoursePage({ params }: { params: { slug: string } }) {
   const course = courseDetails.find((c) => c.slug === params.slug)
   if (!course) return notFound()
 
@@ -160,17 +157,13 @@ export default function CoursePage({ params }: PageProps) {
           </div>
           {course.prerequisites && (
             <div>
-              <h3 className="text-xl font-medium text-white">
-                Prerequisites
-              </h3>
+              <h3 className="text-xl font-medium text-white">Prerequisites</h3>
               <p className="text-slate-300">{course.prerequisites}</p>
             </div>
           )}
           {course.syllabus && (
             <div>
-              <h3 className="text-xl font-medium text-white">
-                Official Syllabus
-              </h3>
+              <h3 className="text-xl font-medium text-white">Official Syllabus</h3>
               <ul className="list-decimal list-inside space-y-1 text-slate-300">
                 {course.syllabus.map((item) => (
                   <li key={item}>{item}</li>
@@ -184,9 +177,7 @@ export default function CoursePage({ params }: PageProps) {
       {/* Call to Action */}
       <div className="mt-12 text-center">
         <Link
-          href="https://wa.me/919250180808?text=Hi,%20I%27d%20like%20to%20enroll%20in%20the%20${encodeURIComponent(
-            course.title,
-          )}%20course."
+          href={`https://wa.me/919250180808?text=Hi,%20I%20would%20like%20to%20enroll%20in%20the%20${encodeURIComponent(course.title)}%20course.`}
           target="_blank"
           className="inline-block bg-green-500 hover:bg-green-600 text-slate-900 font-bold py-3 px-8 rounded-lg text-lg transition"
         >
