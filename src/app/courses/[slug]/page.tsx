@@ -112,12 +112,10 @@ export function generateStaticParams() {
 }
 
 // Define the props type explicitly
-type CoursePageProps = {
-  params: { slug: string };
-};
+
 
 // Page Component
-export default function CoursePage({ params }: CoursePageProps) {
+export default function CoursePage({ params }: { params: { slug: string } }) {
   const course = courseDetails.find((c) => c.slug === params.slug);
   if (!course) return notFound();
 
