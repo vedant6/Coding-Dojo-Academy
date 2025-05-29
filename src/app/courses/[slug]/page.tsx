@@ -1,17 +1,19 @@
-import { notFound } from 'next/navigation'
-import Link from 'next/link'
+import { notFound } from 'next/navigation';
+import Link from 'next/link';
 
+// Define the CourseDetail type
 type CourseDetail = {
-  slug: string
-  title: string
-  overview: string
-  whatYouLearn: string[]
-  duration: string
-  mode: string
-  prerequisites?: string
-  syllabus?: string[]
-}
+  slug: string;
+  title: string;
+  overview: string;
+  whatYouLearn: string[];
+  duration: string;
+  mode: string;
+  prerequisites?: string;
+  syllabus?: string[];
+};
 
+// Course data
 const courseDetails: CourseDetail[] = [
   {
     slug: 'class-10-12-cs-ip',
@@ -102,17 +104,22 @@ const courseDetails: CourseDetail[] = [
     mode: 'Online & Offline',
     prerequisites: 'None',
   },
-]
+];
 
 // Dynamic static params for Next.js App Router
 export function generateStaticParams() {
-  return courseDetails.map((c) => ({ slug: c.slug }))
+  return courseDetails.map((c) => ({ slug: c.slug }));
 }
 
+// Define the props type explicitly
+type CoursePageProps = {
+  params: { slug: string };
+};
+
 // Page Component
-export default function CoursePage({ params }: { params: { slug: string } }) {
-  const course = courseDetails.find((c) => c.slug === params.slug)
-  if (!course) return notFound()
+export default function CoursePage({ params }: CoursePageProps) {
+  const course = courseDetails.find((c) => c.slug === params.slug);
+  if (!course) return notFound();
 
   return (
     <main className="min-h-screen bg-slate-900 text-slate-50 p-8">
@@ -177,7 +184,9 @@ export default function CoursePage({ params }: { params: { slug: string } }) {
       {/* Call to Action */}
       <div className="mt-12 text-center">
         <Link
-          href={`https://wa.me/919250180808?text=Hi,%20I%20would%20like%20to%20enroll%20in%20the%20${encodeURIComponent(course.title)}%20course.`}
+          href={`https://wa.me/919250180808?text=Hi,%20I%20would%20like%20to%20enroll%20in%20the%20${encodeURIComponent(
+            course.title
+          )}%20course.`}
           target="_blank"
           className="inline-block bg-green-500 hover:bg-green-600 text-slate-900 font-bold py-3 px-8 rounded-lg text-lg transition"
         >
@@ -185,5 +194,5 @@ export default function CoursePage({ params }: { params: { slug: string } }) {
         </Link>
       </div>
     </main>
-  )
+  );
 }
